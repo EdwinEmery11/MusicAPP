@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MusicApplicationWebLibrary.Models.Song>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Your playlist:</h1>
+
+<p>
+    <a asp-action="Create">Click here to your playlist here!</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PictureURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.artistName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrackName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Favourite)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item.PictureURL" style="height:128px;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.artistName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrackName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Update", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\edwin.emery\\source\\repos\\MusicApp\\MussicApplicationWebLibrary\\MusicApplicationWebLibrary.csproj": {}
+    "C:\\MusicAPP\\MusicAPP\\MusicApp\\MussicApplicationWebLibrary\\MusicApplicationWebLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\edwin.emery\\source\\repos\\MusicApp\\MussicApplicationWebLibrary\\MusicApplicationWebLibrary.csproj": {
+    "C:\\MusicAPP\\MusicAPP\\MusicApp\\MussicApplicationWebLibrary\\MusicApplicationWebLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\edwin.emery\\source\\repos\\MusicApp\\MussicApplicationWebLibrary\\MusicApplicationWebLibrary.csproj",
+        "projectUniqueName": "C:\\MusicAPP\\MusicAPP\\MusicApp\\MussicApplicationWebLibrary\\MusicApplicationWebLibrary.csproj",
         "projectName": "MusicApplicationWebLibrary",
-        "projectPath": "C:\\Users\\edwin.emery\\source\\repos\\MusicApp\\MussicApplicationWebLibrary\\MusicApplicationWebLibrary.csproj",
+        "projectPath": "C:\\MusicAPP\\MusicAPP\\MusicApp\\MussicApplicationWebLibrary\\MusicApplicationWebLibrary.csproj",
         "packagesPath": "C:\\Users\\edwin.emery\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\edwin.emery\\source\\repos\\MusicApp\\MussicApplicationWebLibrary\\obj\\",
+        "outputPath": "C:\\MusicAPP\\MusicAPP\\MusicApp\\MussicApplicationWebLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\edwin.emery\\AppData\\Roaming\\NuGet\\NuGet.Config",

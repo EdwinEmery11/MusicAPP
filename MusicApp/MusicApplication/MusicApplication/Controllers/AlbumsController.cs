@@ -19,7 +19,7 @@ namespace MusicApplication.Controllers
         {
             dbContext = applicationDbContext;
         }
-
+        //read this file
         //READ
         public IActionResult Index()// show me all the albums that exist
         {

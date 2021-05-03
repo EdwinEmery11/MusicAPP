@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5M1UfTMB5HXXJE1YehDgWH6HEknX1JOOG/oTuLvayNpdy3iTAplOunjtiiYGTqqDcgAW36OcuHhlPp0RI36LQw==",
+  "dgSpecHash": "kpZGgt2RzZbsa7CSIQFQVxqI+ZKUW6SMqAGRaK0x6549v07bBV+RtD0Y2aKIw0ZZKNjX/tGVXVLB515bqLodQw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\edwin.emery\\source\\repos\\MusicApp\\MussicApplicationWebLibrary\\MusicApplicationWebLibrary.csproj",
+  "projectFilePath": "C:\\MusicAPP\\MusicAPP\\MusicApp\\MussicApplicationWebLibrary\\MusicApplicationWebLibrary.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

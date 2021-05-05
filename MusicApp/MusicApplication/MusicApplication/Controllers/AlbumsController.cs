@@ -28,7 +28,7 @@ namespace MusicApplication.Controllers
             return View(allAlbums); //return a view
         }
 
-        [Route("SongsInAlbum/{id:int}")]
+        [Route("SongsonAlbum/{id:int}")]
         public IActionResult SongsonAlbum(int id)// show me all the albums that exist
         {
             var allSongs = dbContext.Songs.Where(s => s.Album.ID == id).ToList();
@@ -105,6 +105,9 @@ namespace MusicApplication.Controllers
         {
             //every operation you must call dbcontext and save the changes 
             var albumToDelete = dbContext.Albums.FirstOrDefault(a => a.ID == id);
+            var songsInAlbum = dbContext.Songs.Include(a => a.Album).Where(s => s.Album.ID == id);
+            dbContext.RemoveRange(songsInAlbum);
+            dbContext.SaveChanges();
             dbContext.Albums.Remove(albumToDelete);
             dbContext.SaveChanges();
             return RedirectToAction("Index");

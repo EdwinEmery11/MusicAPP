@@ -7,7 +7,8 @@
 <h1>Your playlist:</h1>
 
 <p>
-    <a asp-action="Create">Click here to your playlist here!</a>
+    <a asp-action="SongCreate">Click here to add to your playlist here!</a>
+    @Html.ActionLink("TestSongCreate", "SongCreate", "song")
 </p>
 <table class="table">
     <thead>

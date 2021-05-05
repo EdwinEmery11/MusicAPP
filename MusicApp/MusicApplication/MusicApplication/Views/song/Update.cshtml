@@ -3,7 +3,7 @@
 @{// small M on model here to inject  
     ViewData["Title"] = "Update";
 }
- capital M on model here to get the entity tht was injected inside 
+ @*capital M on model here to get the entity tht was injected inside*@ 
 <h5>Update details for </h5>
 <div class="row">
     <div class="col-md-4">
@@ -53,7 +53,8 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    @*<a asp-action="SongIndex">Back to List</a>*@
+    <a href="@Url.Action("SongIndex", new {id= ViewBag.AlbumID })">Back to List </a>
 </div>
 
 @section Scripts {

@@ -95,7 +95,7 @@ namespace MusicApplication.Controllers
             //return redirecting back to the home page index
             return RedirectToAction("SongIndex", new { id = albumID });
         }
-
+        //delete
         //DELETE
         [Route("delete/{id:int}")]
         public IActionResult Delete(int id)//delete an Song

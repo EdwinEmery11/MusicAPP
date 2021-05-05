@@ -96,6 +96,7 @@ namespace MusicApplication.Controllers
             return RedirectToAction("SongIndex", new { id = albumID });
         }
         //delete
+        //delete
         //DELETE
         [Route("delete/{id:int}")]
         public IActionResult Delete(int id)//delete an Song

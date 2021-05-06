@@ -10,10 +10,13 @@ namespace MusicApplicationWebLibrary.Models
         public string TrackName { get; set; }  
         public Genre Genre      { get; set; } 
         public Favourite Favourite { get; set; }
+        public int AlbumID { get; set; }
         //1 song can only be linked to one album
         //declare it as a field also 
         //virtual keyword creates the relationship
-        public virtual Album Album { get; set; }
+        //hellloo
+        public virtual Albums Album { get; set; }
+        
 
     }
 }

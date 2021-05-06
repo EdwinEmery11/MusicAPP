@@ -5,36 +5,40 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MusicApplicationWebLibrary.Models;
-using MusicApplication.Data;
 using MusicApplicationWebLibrary.Models.Binding;
+using MusicApplicationWebLibrary.Data;
+using MusicApplicationWebLibrary.Repositories;
+using MusicApplicationWebLibrary.Interfaces;
 
 namespace MusicApplication.Controllers
 {
     [Route("[Controller]")]
     public class AlbumsController : Controller
     {
-        private readonly ApplicationDbContext dbContext;//dependancy injection
-        //operation mapper
-        public AlbumsController(ApplicationDbContext applicationDbContext)//constructor 
+        private IRepositoryWrapper repository;
+        public AlbumsController(IRepositoryWrapper repositoryWrapper)//constructor 
         {
-            dbContext = applicationDbContext;
+            repository = repositoryWrapper;
         }
         //read this file
         //READ
         public IActionResult Index()// show me all the albums that exist
         {
-            var allAlbums = dbContext.Albums.ToList();
+            var allAlbums = repository.Albums.FindAll();
+            //var allAlbums = dbContext.Albums.ToList();
             // the view / the page that will show up will show all albums
             return View(allAlbums); //return a view
         }
-
-        [Route("SongsonAlbum/{id:int}")]
-        public IActionResult SongsonAlbum(int id)// show me all the albums that exist
-        {
-            var allSongs = dbContext.Songs.Where(s => s.Album.ID == id).ToList();
-            // the view / the page that will show up will show all albums
-            return View(allSongs); //return a view
-        }
+        #region songonalbum controller
+        //[Route("SongsonAlbum/{id:int}")]
+        //public IActionResult SongsonAlbum(int id)// show me all the albums that exist
+        //{
+        //    var allsongs = repository.Song.FindAll();
+        //    //var allSongs = dbContext.Songs.Where(s => s.Album.ID == id).ToList();
+        //    // the view / the page that will show up will show all albums
+        //    return View(allSongs); //return a view
+        //}
+#endregion 
 
         //GET DETAILS
         [Route("details/{id:int}")]//putting a placeholder 
@@ -43,7 +47,8 @@ namespace MusicApplication.Controllers
         {
             //saying go to the details of the Album with this identity 
             //if it finds an album return that album with that ID
-            var albumById = dbContext.Albums.FirstOrDefault(a => a.ID == id);
+            var albumById = repository.Albums.FindByCondition(a => a.ID == id).FirstOrDefault();
+            //var albumById = dbContext.Albums.FirstOrDefault(a => a.ID == id);
             return View(albumById);
         }
         //make the details come from a form 
@@ -58,7 +63,7 @@ namespace MusicApplication.Controllers
         [Route("create")]
         public IActionResult Create(AddAlbumBindingModel bindingModel)
         {
-            var albumToCreate = new Album
+            var albumToCreate = new Albums
             {
                 Name = bindingModel.Name,
                 Tracks = bindingModel.Tracks,
@@ -67,8 +72,9 @@ namespace MusicApplication.Controllers
                 Information = bindingModel.Information,
                 CreatedAt = DateTime.Now
             };
-            dbContext.Albums.Add(albumToCreate);
-            dbContext.SaveChanges();
+            repository.Albums.Create(albumToCreate);
+            repository.save();
+            //dbContext.SaveChange();
             return RedirectToAction("Index");
         }
 
@@ -77,26 +83,19 @@ namespace MusicApplication.Controllers
         [Route("update/{id:int}")]
         public IActionResult Update(int id)//update an album
         {
-            var albumById = dbContext.Albums.FirstOrDefault(a => a.ID == id);
+            var albumById = repository.Albums.FindByCondition(a => a.ID == id).FirstOrDefault();
+            //var albumById = dbContext.Albums.FirstOrDefault(a => a.ID == id);
             return View(albumById);
         }
         [HttpPost]// modifying information
         [Route("update/{id:int}")]
-        public IActionResult Update (Album album, int id)
-        { //what to find the album with that ID
-          //need to get the album out the database
-          //where the album id matches the id of the album I want to modify 
-            var albumToUpdate = dbContext.Albums.FirstOrDefault(a => a.ID == id);
-           //map all the properties to modify 
-                albumToUpdate.Name = album.Name;
-                albumToUpdate.Tracks = album.Tracks;
-                albumToUpdate.PictureURL = album.PictureURL;
-                albumToUpdate.Genre = album.Genre;
-            albumToUpdate.Information = album.Information;   
-            //because weve reassigned values we need to save the changes 
-                dbContext.SaveChanges();
+        public IActionResult Update (Albums album, int id)
+        {
+            repository.Albums.Update(album);           
+                repository.save();
+            //dbContext.SaveChanges();
             //return redirecting back to the home page index
-                return RedirectToAction("Index");
+            return RedirectToAction("Index");
           }
 
         //DELETE
@@ -104,12 +103,22 @@ namespace MusicApplication.Controllers
         public IActionResult Delete(int id)//delete an album
         {
             //every operation you must call dbcontext and save the changes 
-            var albumToDelete = dbContext.Albums.FirstOrDefault(a => a.ID == id);
-            var songsInAlbum = dbContext.Songs.Include(a => a.Album).Where(s => s.Album.ID == id);
-            dbContext.RemoveRange(songsInAlbum);
-            dbContext.SaveChanges();
-            dbContext.Albums.Remove(albumToDelete);
-            dbContext.SaveChanges();
+            var albumToDelete = repository.Albums.FindByCondition(a => a.ID == id).FirstOrDefault();
+            //var albumToDelete = dbContext.Albums.FirstOrDefault(a => a.ID == id);
+            var songsInAlbum = repository.Song.FindByCondition(a => a.AlbumID == id);
+            //var songsInAlbum = dbContext.Songs.Include(a => a.Album).Where(s => s.Album.ID == id);
+            //repository.RemoveRange(songsInAlbum);
+            foreach(var rSong in songsInAlbum)
+            {
+                repository.Song.Delete(rSong);
+            }
+            //dbContext.RemoveRange(songsInAlbum);
+            repository.save();
+            //dbContext.SaveChanges();
+            repository.Albums.Delete(albumToDelete);
+            //dbContext.Albums.Remove(albumToDelete);
+            repository.save();
+            //dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
 

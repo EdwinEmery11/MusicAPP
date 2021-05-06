@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MusicApplicationWebLibrary.Models
 {
-    public class Album
+    public class Albums
     {
         public int ID { get; set; }//unique identifier
         public string Name { get; set; }

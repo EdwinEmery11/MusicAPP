@@ -19,7 +19,7 @@ namespace MusicApplicationAPI.Data
         {
         
         }
-        public DbSet<Album> Albums { get; set; }
+        public DbSet<Albums> Albums { get; set; }
         //Albums will be the name of the table
         //table that contains rows of albums
         // this is the entity 

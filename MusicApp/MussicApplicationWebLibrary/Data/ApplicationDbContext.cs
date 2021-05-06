@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MusicApplication.Data
+namespace MusicApplicationWebLibrary.Data
 {//creates the dbset/entity 
     public class ApplicationDbContext : DbContext
     {
@@ -16,7 +16,7 @@ namespace MusicApplication.Data
         //class (applicationDBcontext)
         // and passing it over to the parent class to go use it 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-        public DbSet<Album> Albums { get; set; }
+        public DbSet<Albums> Albums { get; set; }
         //Albums will be the name of the table
         //table that contains rows of albums
         // this is the entity 

@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MusicApplication.Data;
 using MusicApplication.Migrations;
+using MusicApplicationWebLibrary.Data;
+using MusicApplicationWebLibrary.Interfaces;
 using MusicApplicationWebLibrary.Models;
 using MusicApplicationWebLibrary.Models.Binding;
+using MusicApplicationWebLibrary.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +16,10 @@ namespace MusicApplication.Controllers
     [Route("[Controller]")]
     public class SongController : Controller
     {
-        private readonly ApplicationDbContext dbContext;//dependancy injection
-        //operation mapper
-        public SongController(ApplicationDbContext applicationDbContext)//constructor 
+        private IRepositoryWrapper repository;
+        public SongController(RepositoryWrapper repositoryWrapper)//constructor 
         {
-            dbContext = applicationDbContext;
+            repository = repositoryWrapper;
         }
 
         //READ
@@ -26,7 +27,8 @@ namespace MusicApplication.Controllers
         public IActionResult SongIndex(int id)// show me all the Songs that exist
         {
             ViewBag.AlbumID = id;
-            var allSongs = dbContext.Songs.Where(s => s.Album.ID == id).ToList();
+            var allSongs = repository.Song.FindByCondition(s => s.Album.ID == id).ToList();
+            //var allSongs = dbContext.Songs.Where(s => s.Album.ID == id).ToList();
             // the view / the page that will show up will show all albums
             return View(allSongs); //return a view
         }
@@ -40,7 +42,7 @@ namespace MusicApplication.Controllers
             {
                 AlbumID = id
             };
-            //ViewBag.AlbumID = id;
+            
             ViewData["AlbumID"] = id;
             return View(bindingmodel);
         }
@@ -48,7 +50,7 @@ namespace MusicApplication.Controllers
         [Route("SongCreate/{id:int}")]
         public IActionResult SongCreate(AddSongBindingmodel bindingModel, int id)
         {
-            
+
             var SongsToCreate = new Song
             {
 
@@ -57,11 +59,13 @@ namespace MusicApplication.Controllers
                 PictureURL = "https://th.bing.com/th/id/Rf2b084b356e6001e681d6458c8ac9e0f?rik=IoKZA8E4mW2lzg&riu=http%3a%2f%2fwww.clique.tv%2fwp-content%2fuploads%2f2015%2f09%2fdrake-future-what-a-time-to-be-alive-Song-cover-lead.jpg&ehk=8A3P%2fVHf0aKPpvyz3YOw3O3ic%2fKpv4v8mmKOLHUPmA4%3d&risl=&pid=ImgRaw",
                 Genre = bindingModel.Genre,
                 Favourite = bindingModel.Favourite,
-                Album=dbContext.Albums.FirstOrDefault(a=>a.ID==id)
+                Album = repository.Albums.FindByCondition(a => a.ID == id).FirstOrDefault();
+                //Album=dbContex.Albums.FirstOrDefault(a=>a.ID==id)
             };
-            //entity - means give back the created object
-            //entity field is the song that has been created in song create
-            var songAdded = dbContext.Songs.Add(SongsToCreate).Entity;
+        //entity - means give back the created object
+        //entity field is the song that has been created in song create
+        var songAdded = Repository.Song.Add(SongsToCreate).Entity;
+        //var songAdded = dbContext.Songs.Add(SongsToCreate).Entity;
             dbContext.SaveChanges();         
             return RedirectToAction("SongIndex",new { id = id});
         }

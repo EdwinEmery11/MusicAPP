@@ -14,6 +14,7 @@ namespace MusicApplicationWebLibrary.Models
         //declare it as a field also 
         //virtual keyword creates the relationship
         public virtual Albums Album { get; set; }
+        public int AlbumID { get; set; }
 
     }
 }

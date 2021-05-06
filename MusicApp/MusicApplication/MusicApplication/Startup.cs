@@ -11,6 +11,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MusicApplicationWebLibrary.Data;
+using MusicApplicationWebLibrary.Interfaces;
+using MusicApplicationWebLibrary.Repositories;
 
 namespace MusicApplication
 {
@@ -27,12 +29,13 @@ namespace MusicApplication
         public void ConfigureServices(IServiceCollection services)
         {//says how we connect to our database
             services.AddRouting(r => r.LowercaseUrls = true);//makes urls lowercase
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             // dont want to hard code this so tell it to get it from the source 
             //get it from configuration 
             var myConnectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options =>
             //tell it to use the sql server version and detect the right version
-            options.UseMySql(myConnectionString, ServerVersion.AutoDetect(myConnectionString)));
+            options.UseMySql(myConnectionString, ServerVersion.AutoDetect(myConnectionString),b=>b.MigrationsAssembly("MusicApplication")));
             services.AddControllersWithViews();
             services.AddControllersWithViews();
         }

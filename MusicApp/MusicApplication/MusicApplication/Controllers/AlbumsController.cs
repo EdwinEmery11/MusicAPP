@@ -16,7 +16,7 @@ namespace MusicApplication.Controllers
     public class AlbumsController : Controller
     {
         private IRepositoryWrapper repository;
-        public AlbumsController(RepositoryWrapper repositoryWrapper)//constructor 
+        public AlbumsController(IRepositoryWrapper repositoryWrapper)//constructor 
         {
             repository = repositoryWrapper;
         }
@@ -29,7 +29,7 @@ namespace MusicApplication.Controllers
             // the view / the page that will show up will show all albums
             return View(allAlbums); //return a view
         }
-
+        #region songonalbum controller
         //[Route("SongsonAlbum/{id:int}")]
         //public IActionResult SongsonAlbum(int id)// show me all the albums that exist
         //{
@@ -38,6 +38,7 @@ namespace MusicApplication.Controllers
         //    // the view / the page that will show up will show all albums
         //    return View(allSongs); //return a view
         //}
+#endregion 
 
         //GET DETAILS
         [Route("details/{id:int}")]//putting a placeholder 
@@ -71,8 +72,9 @@ namespace MusicApplication.Controllers
                 Information = bindingModel.Information,
                 CreatedAt = DateTime.Now
             };
-            dbContext.Albums.Add(albumToCreate);
-            dbContext.SaveChanges();
+            repository.Albums.Create(albumToCreate);
+            repository.save();
+            //dbContext.SaveChange();
             return RedirectToAction("Index");
         }
 
@@ -98,11 +100,12 @@ namespace MusicApplication.Controllers
                 albumToUpdate.Tracks = album.Tracks;
                 albumToUpdate.PictureURL = album.PictureURL;
                 albumToUpdate.Genre = album.Genre;
-            albumToUpdate.Information = album.Information;   
+            albumToUpdate.Information = album.Information;
             //because weve reassigned values we need to save the changes 
-                dbContext.SaveChanges();
+            repository.save();
+            //dbContext.SaveChanges();
             //return redirecting back to the home page index
-                return RedirectToAction("Index");
+            return RedirectToAction("Index");
           }
 
         //DELETE
@@ -112,12 +115,20 @@ namespace MusicApplication.Controllers
             //every operation you must call dbcontext and save the changes 
             var albumToDelete = repository.Albums.FindByCondition(a => a.ID == id).FirstOrDefault();
             //var albumToDelete = dbContext.Albums.FirstOrDefault(a => a.ID == id);
-            var songsInAlbum = repository.Song.Include(a => a.Album).FindByCondition(s => s.Album.ID == id)
+            var songsInAlbum = repository.Song.FindByCondition(a => a.AlbumID == id);
             //var songsInAlbum = dbContext.Songs.Include(a => a.Album).Where(s => s.Album.ID == id);
-            dbContext.RemoveRange(songsInAlbum);
-            dbContext.SaveChanges();
-            dbContext.Albums.Remove(albumToDelete);
-            dbContext.SaveChanges();
+            //repository.RemoveRange(songsInAlbum);
+            foreach(var rSong in songsInAlbum)
+            {
+                repository.Song.Delete(rSong);
+            }
+            //dbContext.RemoveRange(songsInAlbum);
+            repository.save();
+            //dbContext.SaveChanges();
+            repository.Albums.Delete(albumToDelete);
+            //dbContext.Albums.Remove(albumToDelete);
+            repository.save();
+            //dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
 

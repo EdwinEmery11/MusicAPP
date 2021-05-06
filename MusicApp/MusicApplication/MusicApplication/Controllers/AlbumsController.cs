@@ -90,19 +90,9 @@ namespace MusicApplication.Controllers
         [HttpPost]// modifying information
         [Route("update/{id:int}")]
         public IActionResult Update (Albums album, int id)
-        { //what to find the album with that ID
-          //need to get the album out the database
-          //where the album id matches the id of the album I want to modify 
-            var albumToUpdate = repository.Albums.FindByCondition(a => a.ID == id).FirstOrDefault();
-            //var albumToUpdate = dbContext.Albums.FirstOrDefault(a => a.ID == id);
-           //map all the properties to modify 
-                albumToUpdate.Name = album.Name;
-                albumToUpdate.Tracks = album.Tracks;
-                albumToUpdate.PictureURL = album.PictureURL;
-                albumToUpdate.Genre = album.Genre;
-            albumToUpdate.Information = album.Information;
-            //because weve reassigned values we need to save the changes 
-            repository.save();
+        {
+            repository.Albums.Update(album);           
+                repository.save();
             //dbContext.SaveChanges();
             //return redirecting back to the home page index
             return RedirectToAction("Index");

@@ -83,7 +83,8 @@ namespace MusicApplication.Controllers
         [Route("Update/{id:int}")]
         public IActionResult Update(Song Song, int id)
         {
-            repository.Song.Update(Song);
+            var song = repository.Song.Update(Song);
+            
             repository.save();
             //return redirecting back to the home page index
             return RedirectToAction("SongIndex", new { id = Song.AlbumID });

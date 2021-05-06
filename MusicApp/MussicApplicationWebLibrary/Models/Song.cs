@@ -14,7 +14,7 @@ namespace MusicApplicationWebLibrary.Models
         //1 song can only be linked to one album
         //declare it as a field also 
         //virtual keyword creates the relationship
-
+        //hellloo
         public virtual Albums Album { get; set; }
         
 

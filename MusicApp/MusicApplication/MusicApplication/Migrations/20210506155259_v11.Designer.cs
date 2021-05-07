@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MusicApplication.Data;
+using MusicApplicationWebLibrary.Data;
 
 namespace MusicApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210504152534_v6")]
-    partial class v6
+    [Migration("20210506155259_v11")]
+    partial class v11
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,7 +19,7 @@ namespace MusicApplication.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("MusicApplicationWebLibrary.Models.Album", b =>
+            modelBuilder.Entity("MusicApplicationWebLibrary.Models.Albums", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -54,7 +54,7 @@ namespace MusicApplication.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("AlbumID")
+                    b.Property<int>("AlbumID")
                         .HasColumnType("int");
 
                     b.Property<int>("Favourite")
@@ -81,14 +81,16 @@ namespace MusicApplication.Migrations
 
             modelBuilder.Entity("MusicApplicationWebLibrary.Models.Song", b =>
                 {
-                    b.HasOne("MusicApplicationWebLibrary.Models.Album", "Album")
+                    b.HasOne("MusicApplicationWebLibrary.Models.Albums", "Album")
                         .WithMany("Songs")
-                        .HasForeignKey("AlbumID");
+                        .HasForeignKey("AlbumID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Album");
                 });
 
-            modelBuilder.Entity("MusicApplicationWebLibrary.Models.Album", b =>
+            modelBuilder.Entity("MusicApplicationWebLibrary.Models.Albums", b =>
                 {
                     b.Navigation("Songs");
                 });

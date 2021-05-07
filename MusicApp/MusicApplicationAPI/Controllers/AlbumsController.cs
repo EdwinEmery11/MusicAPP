@@ -43,7 +43,7 @@ namespace MusicApplicationAPI.Controllers
         [HttpPost("")]
         public IActionResult CreateAlbum([FromBody] AddAlbumBindingModel bindingModel)
         {
-            var AlbumToCreate = new Album
+            var AlbumToCreate = new Albums
             {
                 Name = bindingModel.Name,
                 Tracks = bindingModel.Tracks,
@@ -59,7 +59,7 @@ namespace MusicApplicationAPI.Controllers
 
         //Update
         [HttpPut("{id:int}")]
-        public IActionResult UpdateAlbum([FromBody] Album Album, int id)
+        public IActionResult UpdateAlbum([FromBody] Albums Album, int id)
         {
             var AlbumById = dbContext.Albums.FirstOrDefault(a => a.ID == id);
             if (AlbumById == null)

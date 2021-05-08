@@ -14,7 +14,7 @@ namespace MusicApplication.Controllers
 {
     [Route("[Controller]")]
     public class AlbumsController : Controller
-    {
+    { 
         private IRepositoryWrapper repository;
         public AlbumsController(IRepositoryWrapper repositoryWrapper)//constructor 
         {

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicApplication", "..\MusicApplication\MusicApplication.csproj", "{BE18D38E-4EB4-4383-99EA-9D084840BD35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicApplication", "MusicApplication\MusicApplication.csproj", "{BE18D38E-4EB4-4383-99EA-9D084840BD35}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicApplicationAPI", "..\MusicApplicationAPI\MusicApplicationAPI.csproj", "{B7622517-ADD2-401E-A017-233EE7E3D17B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicApplicationAPI", "MusicApplicationAPI\MusicApplicationAPI.csproj", "{B7622517-ADD2-401E-A017-233EE7E3D17B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicApplicationWebLibrary", "..\MusicApplicationWebLibrary\MusicApplicationWebLibrary.csproj", "{25BB30B3-0F24-470A-9E20-85BF946A4B02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicApplicationWebLibrary", "MusicApplicationWebLibrary\MusicApplicationWebLibrary.csproj", "{25BB30B3-0F24-470A-9E20-85BF946A4B02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

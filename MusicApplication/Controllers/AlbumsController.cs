@@ -12,6 +12,7 @@ using MusicApplicationWebLibrary.Interfaces;
 
 namespace MusicApplication.Controllers
 {
+
     [Route("[Controller]")]
     public class AlbumsController : Controller
     {

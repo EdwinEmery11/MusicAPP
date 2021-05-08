@@ -80,12 +80,12 @@ namespace MusicApplication.Controllers
             ViewData["AlbumID"] = albumID;
             return View(SongById);
         }
+        
         [HttpPost]// modifying information
         [Route("Update/{id:int}")]
         public IActionResult Update(Song Song, int id)
         {
-            var song = repository.Song.Update(Song);
-            
+            repository.Song.Update(Song);    
             repository.save();
             //return redirecting back to the home page index
             return RedirectToAction("SongIndex", new { id = Song.AlbumID });

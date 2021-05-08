@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MussicApplicationWebLibrary\MusicApplicationWebLibrary.csproj" />
+    <ProjectReference Include="..\MusicApplicationWebLibrary\MusicApplicationWebLibrary.csproj" />
   </ItemGroup>
 
 </Project>

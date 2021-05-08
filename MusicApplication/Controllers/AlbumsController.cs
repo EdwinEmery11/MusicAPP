@@ -11,7 +11,7 @@ using MusicApplicationWebLibrary.Repositories;
 using MusicApplicationWebLibrary.Interfaces;
 
 namespace MusicApplication.Controllers
-{//hhh
+{
     [Route("[Controller]")]
     public class AlbumsController : Controller
     {
@@ -21,7 +21,7 @@ namespace MusicApplication.Controllers
             repository = repositoryWrapper;
         }
         //read this file
-        //READ
+        //READ //ssswwww
         public IActionResult Index()// show me all the albums that exist
         {
             var allAlbums = repository.Albums.FindAll();

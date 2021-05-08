@@ -26,6 +26,8 @@ stages:
             feedsToUse: 'select'
         - task: DotNetCoreCLI@2
           inputs:
+            command: 'build'
+            projects: '**/*.csproj'
             arguments: 'dotnet build --configuration $(BuildConfiguration)'
         - task: DotNetCoreCLI@2
           inputs:

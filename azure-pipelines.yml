@@ -28,7 +28,7 @@ stages:
           inputs:
             command: 'build'
             projects: '**/*.csproj'
-            arguments: '--configuration $(BuildConfiguration)'
+            arguments: 'dotnet build --configuration $(BuildConfiguration)'
         - task: DotNetCoreCLI@2
           inputs:
             command: 'publish'

@@ -1,4 +1,7 @@
+README
+
 MUSIC APPLICATION:
+
 This music application is a web application made for people looking to keep track of their favourite albums and songs. An application that is beneficial for any situation you're in, whether that's at the gym trying to reach your goals, or for casual listen through out your day.
 Users can add the name of the album they would like to listen to as well as a few extra details; album name, Tracks Genre, and interesting information they would like for the album. They then choose their favourite songs and add them to the album.
 Contributors

@@ -22,7 +22,7 @@ namespace MusicApplication.Controllers
             repository = repositoryWrapper;
         }
         //read this file
-        //READ //ssswwww
+        //READ 
         public IActionResult Index()// show me all the albums that exist
         {
             var allAlbums = repository.Albums.FindAll();
@@ -44,7 +44,7 @@ namespace MusicApplication.Controllers
         //GET DETAILS
         [Route("details/{id:int}")]//putting a placeholder 
         //maps directly to whatever is in the Details parameters
-        public IActionResult Details(int id)// view the details of 1 album
+        public IActionResult Details    (int id)// view the details of 1 album
         {
             //saying go to the details of the Album with this identity 
             //if it finds an album return that album with that ID

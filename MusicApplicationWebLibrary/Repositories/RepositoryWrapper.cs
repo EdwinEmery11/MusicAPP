@@ -19,6 +19,7 @@ namespace MusicApplicationWebLibrary.Repositories
 
          ISongRepository _songs;
 
+        //public method to do the assignment for private methods
         public IAlbumsRepository Albums
         {
             get

@@ -11,7 +11,9 @@ using System.Threading.Tasks;
 namespace MusicApplicationWebLibrary.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
-    {
+    {//need to create all the implementations of the interface 
+        //controll . 
+        //set the context u want to do - relational mapping 
         protected ApplicationDbContext RepositoryContext { get; set; }
         public Repository (ApplicationDbContext repositoryContext)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MusicApplicationWebLibrary.Interfaces
 {
     public interface IRepository<T>
-    {
+    {// This is a contract things we want to happen for the repository 
         IEnumerable<T> FindAll();
         // takes a method in takes expression in as its own argument  
         // these are the contracts created - things we want to happen for the repository

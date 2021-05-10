@@ -26,6 +26,7 @@ To comply with the objectives, I used the following technologies:
 These were considered the Minimum Viable Product (MVP) for my project.
 ________________________________________
 2.	Music App Trello board
+
 ![image](https://user-images.githubusercontent.com/82107334/117595219-214e5a00-b138-11eb-9e30-098eb64fffdf.png)
 
  

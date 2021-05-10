@@ -37,3 +37,42 @@ To see the details of this board please use the following link: https://trello.c
 ________________________________________
 3.	ERD (Entity Relationship Diagram)
 ERD is a structural diagram used for database design. below is the ERD for this project that consists of 2 tables:
+
+![image](https://user-images.githubusercontent.com/82107334/117595261-45aa3680-b138-11eb-989b-cb6c2f9db91a.png)
+
+The relationship shown here in the table is a one and only one notation from albums and a zero through many notations to song. One album and only 1 album can have 0 or many songs.
+
+![image](https://user-images.githubusercontent.com/82107334/117595286-535fbc00-b138-11eb-819d-153e752cf6f5.png)
+
+A view of that relationship in the database (MySQL)
+The database consisted of 2 tables an Albums table and a songs table, the album table consisted of; id, name, tracks, an album picture, genre, some general information about the album and when the user created that album, in contrast to the song table which was much more specific on the songs of the album looking at fields such as the artist’s name, track name, if that track was one of their favourite tracks and an albumID as a foreign Key.
+________________________________________
+4.	Testing 
+After I finished my CRUD web Application, I started to write code for my unit test, with xUnit Test. To check my data is working as intended, I created 7 unit test in total to test the functionality of my controllers which performed the crud application below is the coverage report for both controllers 
+
+AlbumController test coverage :
+
+![image](https://user-images.githubusercontent.com/82107334/117595338-6ffbf400-b138-11eb-92d3-b2ee90c802a0.png)
+
+SongController:
+
+![image](https://user-images.githubusercontent.com/82107334/117595346-7a1df280-b138-11eb-96ba-77d8308c6d19.png)
+
+5.	Continuous Integration
+The general workflow of this project starts from the Trello board where I designed my project. I have followed my board to write the code within Visual Studios. Tested the code to catch any errors and to fix them the application was originally supposed to run on azure DevOps, where each time the code is pushed to my repo on Github, Azure DevOps Automatically deploys it instead I’ve settled for a manual deployment on Visual Studios published to my Azure web app.
+
+6.	Risk Assessment
+
+![image](https://user-images.githubusercontent.com/82107334/117595465-d254f480-b138-11eb-81da-fce58f5619cb.png)
+
+Known Issues:
+They are a Few bugs with the current app:
+•	Currently you cannot update a Song, the app will fail
+•	Data validation on the app is all so lacking resulting in incorrect information being entered
+
+Future Improvements:
+They are many features I would like to add to this app in the future including:
+•	The ability to listen to songs 
+•	Login and log out functions
+•	The ability to preview a song without login
+•	The ability to have just a song playlist 
